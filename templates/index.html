@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Scraper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Scraper</h1>
+        <form action="/" method="post">
+            <input type="text" name="search_query" placeholder="Enter search query">
+            <button type="submit">Search</button>
+        </form>
+        {% if videos %}
+        <div class="videos-container">
+            {% for video in videos %}
+            <div class="video">
+                <h2>{{ video.title }}</h2>
+                <p><strong>Views:</strong> {{ video.views }}</p>
+                <p><strong>Date Posted:</strong> {{ video.date_posted }}</p>
+                <a href="{{ video.url }}"><img src="{{ video.thumbnails }}" alt="{{ video.title }}"></a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
